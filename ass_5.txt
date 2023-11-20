@@ -1,0 +1,61 @@
+CODE
+#include<iostream>
+using namespace std;
+class shape{ //creating base class shape
+public: int length;
+int breadth;
+void getdata();
+virtual void area() = 0 //creating pure virtual function for displaying area
+};
+void shape ::getdata(){ //function for getting data of shape
+cout<<"Enter the length/height of shape : ";
+cin>>length;
+cout<<"Enter the breadth/base of shape : ";
+cin>>breadth;
+}
+class triangle : public shape{ //creating derived class triangle
+public:
+void area();//defining pure virtual function decleared in base class
+};
+void triangle ::area(){
+cout<<"***********************"<<endl;
+cout<<"The area of the Triangle is : "<<0.5*length*breadth<<endl;
+cout<<"************************"<<endl;
+}
+class rectangle : public shape{ //creating derived class rectangle
+public:
+void area(); //defining pure virtual function decleared in base class
+};
+void rectangle ::area(){
+cout<<"***********************"<<endl;
+cout<<"The area of the rectangle is : "<<length*breadth<<endl;
+cout<<"************************"<<endl;
+}
+int main(){
+shape *base; //creating shape class pointer
+triangle tri; //creating triangle class object
+rectangle rect; //creating rectangle class object
+base = &tri; //assigning base class pointer address of triangle object
+cout<<"Enter the Base and Height of the triangle "<<endl;
+base->getdata(); //call to get data function
+base->area(); //call to area function
+base = &rect; //assigning base class pointer address of rectangle object
+cout<<"Enter the Length and Breadth of the triangle "<<endl;
+base->getdata(); //call to get data function
+base->area(); //call to area function
+}
+OUTPUT
+pg@pg-Vostro-3902:~/Desktop/SyCOMP255$ cd "/home/pg/Desktop/SyCOMP255/" && g++
+assignment5.cpp -o assignment5 && "/home/pg/Desktop/SyCOMP255/"assignment5
+Enter the Base and Height of the triangle
+Enter the length/height of shape : 10
+Enter the breadth/base of shape : 20
+***********************
+The area of the Triangle is : 100
+************************
+Enter the Length and Breadth of the triangle
+Enter the length/height of shape : 10
+Enter the breadth/base of shape : 30
+***********************
+The area of the rectangle is : 300
+************************

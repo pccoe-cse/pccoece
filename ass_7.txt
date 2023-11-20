@@ -1,0 +1,167 @@
+Code
+#include<iostream>
+using namespace std;
+template <class T> class Vector{
+private:
+T *arr;
+int size;
+public:
+void create(int n){
+size=n;
+arr = new T[size];
+int index,val;
+cout<<"Enter elements of the vector : "<<endl;
+cout<<"********************************"<<endl;
+for (int i = 0; i < size; i++)
+{
+cout<<"Enter the value at index "<<i+1<<" : ";
+cin>>arr[i];
+}
+cout<<"********************************"<<endl;
+cout<<"Insertion ended !!!!"<<endl;
+cout<<"********************************"<<endl;
+}
+void modify(){
+int index;
+try{
+cout<<"Enter the index at which you want to modify : ";
+cin>>index;
+if (index<0||index>size)
+{
+throw index;
+}
+}
+catch(int e){
+cout << "Index out of bounds." << endl;
+return;
+}
+cout<<"Enter the value after modification : ";
+cin>>arr[index-1];
+display();
+}
+void scalarMultipication(int scalar)
+{
+for (int i = 0; i < size; i++)
+{
+arr[i]=scalar*arr[i];
+}
+display();
+}
+void display(){
+cout<<"********************************"<<endl;
+cout<<"Displaying all Elements : "<<endl;
+cout<<"( ";
+for (int i = 0; i < size; i++)
+{
+cout<<arr[i]<<" ";
+if (i!=size-1)
+{
+cout<<",";
+}
+}
+cout<<")"<<endl;
+cout<<"********************************"<<endl;
+}
+};
+int main()
+{
+Vector<int> vect;
+cout<<"Enter the size of vector : ";
+int size;
+cin >> size;
+vect.create(size);
+int ch = 0;
+do
+{
+cout<<"********************************"<<endl;
+cout<<"Menu : "<<endl;
+cout<<"1.Modify element\n2.Scalar Multiplication\n3.Display\n4.exit\n";
+cout<<"Enter your choice : ";
+cin>>ch;
+switch(ch)
+{
+case 1:vect.modify();
+break;
+case 2:
+int scalar;
+cout << "enter a number to multiply with" ;
+cin >> scalar;
+vect.scalarMultipication(scalar);
+break;
+case 3:
+vect.display();
+break;
+case 4:
+cout<<"Thank you!!!"<<endl;
+break;
+default:cout<<"Invalid Choice!!!"<<endl;break;
+}
+} while (ch!=4);
+return 0;
+}
+Output
+pg@pg-Vostro-3902:~/Desktop/SyCOMP255$ cd "/home/pg/Desktop/SyCOMP255/" && g++
+assignment7.cpp -o assignment7 && "/home/pg/Desktop/SyCOMP255/"assignment7
+Enter the size of vector : 5
+Enter elements of the vector :
+********************************
+Enter the value at index 1 : 1
+Enter the value at index 2 : 2
+Enter the value at index 3 : 3
+Enter the value at index 4 : 4
+Enter the value at index 5 : 5
+********************************
+Insertion ended !!!!
+********************************
+********************************
+Menu :
+1.Modify element
+2.Scalar Multiplication
+3.Display
+4.exit
+Enter your choice : 1
+Enter the index at which you want to modify : 2
+Enter the value after modification : 6
+********************************
+Displaying all Elements :
+( 1 ,6 ,3 ,4 ,5 )
+********************************
+********************************
+Menu :
+1.Modify element
+2.Scalar Multiplication
+3.Display
+4.exit
+Enter your choice : 2
+enter a number to multiply with6
+********************************
+Displaying all Elements :
+( 6 ,36 ,18 ,24 ,30 )
+********************************
+********************************
+Menu :
+1.Modify element
+2.Scalar Multiplication
+3.Display
+4.exit
+Enter your choice : 1
+Enter the index at which you want to modify : 6
+Index out of bounds.
+********************************
+Menu :
+1.Modify element
+2.Scalar Multiplication
+3.Display
+4.exit
+Enter your choice : 3
+********************************
+Displaying all Elements :
+( 6 ,36 ,18 ,24 ,30 )
+********************************
+Menu :
+1.Modify element
+2.Scalar Multiplication
+3.Display
+4.exit
+Enter your choice : 4
+Thank you!!!

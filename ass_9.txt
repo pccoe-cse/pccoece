@@ -1,0 +1,376 @@
+Stack
+#include<iostream>
+#include<stack>
+using namespace std;
+stack<int> getBinary(int n){
+stack<int> st;
+cout<<"Enter the your Binary Binary number";
+int bit;
+while (n!=0)
+{
+cin>>bit;
+st.push(bit);
+n-- ;
+}
+return st;
+}
+stack<int> addBinary(stack<int>s1,stack<int>s2){
+stack<int>s3;
+if (s1.size()!=s2.size())
+{
+string s="This method only add two same bit binary numbers!!!";
+throw s;
+}
+int sum=0,sn1=0,sn2=0,carry=0;
+while (!s1.empty()&&!s2.empty())
+{
+sn1 = s1.top();
+s1.pop();
+sn2 = s2.top();
+s2.pop();
+sum=(sn1+sn2+carry)%2;
+carry = (sn1+sn2+carry)/2;
+s3.push(sum);
+}
+if(carry==1){
+s3.push(carry);
+}
+return s3;
+}
+void showBinary(stack<int>s){
+if(s.empty()){
+return;
+}
+int n =s.top();
+cout<<n;
+s.pop();
+showBinary(s);
+s.push(n);
+}
+int main(){
+cout<<"Enter the bits of your binary number";
+int n;
+cin>>n;
+stack<int>B1 = getBinary(n);
+showBinary(B1);
+cout<<endl;
+stack<int>B2 = getBinary(n);
+showBinary(B2);
+cout<<endl;
+try{
+stack<int>sum = addBinary(B1,B2);
+cout<<"You sum is : ";
+showBinary(sum);
+}
+catch(string s){
+cout<<s<<endl;
+}
+return 0;
+}
+Output
+Enter the bits of your binary number 4
+Enter the your Binary Binary number 1 0 0 1
+1001
+Enter the your Binary Binary number 1 0 0 1
+1001
+You sum is : 10010
+--------------------------------
+Process exited after 35.96 seconds with return value 0
+Press any key to continue . . .
+Map
+#include <iostream>
+#include <iterator>
+#include <map>
+using namespace std;
+class Person
+{
+private:
+string name;
+string dob;
+long int tel;
+public:
+void Input();
+friend ostream &operator<<(ostream &out, const Person &r);
+};
+ostream &operator<<(ostream &out, const Person &p)
+{
+out << "Name : "<<p.name<<endl;
+out << "DOB : "<<p.dob<<endl;
+out << "Telephone : "<<p.tel<<endl;
+return out;
+}
+void Person::Input()
+{
+cout << "Enter the name: ";
+cin >> name;
+cout << "\nEnter the Date of Birth (Format: DD/MM/YYYY): ";
+cin >> dob;
+cout << "\nEnter the telephone number: ";
+cin >> tel;
+cout << "\n------------------------------------------------\n";
+}
+class Map
+{
+private:
+map<int, Person> m;
+public:
+void add();
+void display();
+void search();
+void del();
+void update();
+};
+void Map::add()
+{
+int key;
+Person p;
+cout << "\nEnter the ID: ";
+cin >> key;
+cout << "Enter the Person Data:\n";
+p.Input();
+m.insert(pair<int, Person>(key, p));
+}
+void Map::display()
+{
+map<int, Person>::iterator i = m.begin();
+for (i; i != m.end(); ++i)
+{
+cout <<i->first;
+cout <<i->second;
+cout << "\n------------------------------------------------\n";
+}
+}
+void Map::search()
+{
+int key, flag = 0;
+cout << "\nEnter the ID of the person you want to search: ";
+cin >> key;
+map<int, Person>::iterator i = m.begin();
+for (i; i != m.end(); ++i)
+{
+if (i->first == key)
+{
+flag = 1;
+cout << "\nData Found..!" << endl;
+cout <<"Name";
+cout <<"DOB";
+cout <<"Telephone";
+cout <<i->second;
+break;
+}
+}
+if (flag == 0)
+cout << "\nEntered ID does not exist in the database!";
+}
+void Map::del()
+{
+int key, flag = 0;
+cout << "\nEnter the ID of the person you want to delete: ";
+cin >> key;
+map<int, Person>::iterator i = m.begin();
+for (i; i != m.end(); ++i)
+{
+if (i->first == key)
+{
+flag = 1;
+m.erase(key);
+cout << "\nData deleted Successfully!";
+break;
+}
+}
+if (flag == 0)
+cout << "\nEntered ID does not exist in the database!";
+}
+void Map::update()
+{
+int key, flag = 0;
+cout << "\nEnter the ID of the person you want to update: ";
+cin >> key;
+map<int, Person>::iterator i = m.begin();
+for (i; i != m.end(); ++i)
+{
+if (i->first == key)
+{
+flag = 1;
+m.erase(key);
+Person p;
+cout << "\nEnter updated data: ";
+p.Input();
+m.insert(pair<int, Person>(key, p));
+cout << "\nData updated Successfully..!";
+break;
+}
+}
+if (flag == 0)
+cout << "\nEntered ID does not exist in the database!";
+}
+int main()
+{
+Map t;
+int ch;
+do
+{
+cout << "\n1.Add Record"
+<< "\n2.Display Record"
+<< "\n3.Search Record"
+<< "\n4.Delete Record"
+<< "\n5.Update Record"
+<< "\n6.Exit";
+cout << "\nEnter your choice :";
+cin >> ch;
+switch (ch)
+{
+case 1:
+cout << "\nAdd Record: "
+<< "\n";
+t.add();
+break;
+case 2:
+cout << "\nDisplay Record: "
+<< "\n";
+t.display();
+break;
+case 3:
+cout << "\nSearch Record: "
+<< "\n";
+t.search();
+break;
+case 4:
+cout << "\nDelete Record: "
+<< "\n";
+t.del();
+break;
+case 5:
+cout << "\nUpdata Record: "
+<< "\n";
+t.update();
+break;
+case 6:
+cout << "\nYou are exited!\n\n";
+exit(0);
+break;
+default:
+cout << "\nInvalid Choice!"
+<< "\n";
+break;
+}
+} while (ch != 6);
+return 0;
+}
+Output
+1.Add Record
+2.Display Record
+3.Search Record
+4.Delete Record
+5.Update Record
+6.Exit
+Enter your choice :1
+Add Record:
+Enter the ID: 255
+Enter the Person Data:
+Enter the name: Sujit
+Enter the Date of Birth (Format: DD/MM/YYYY): 17/12/2004
+Enter the telephone number: 0654568
+------------------------------------------------
+1.Add Record
+2.Display Record
+3.Search Record
+4.Delete Record
+5.Update Record
+6.Exit
+Enter your choice :1
+Add Record:
+Enter the ID: 258
+Enter the Person Data:
+Enter the name: Omkar
+Enter the Date of Birth (Format: DD/MM/YYYY): 12/4/2003
+Enter the telephone number: 546587
+------------------------------------------------
+1.Add Record
+2.Display Record
+3.Search Record
+4.Delete Record
+5.Update Record
+6.Exit
+Enter your choice :2
+Display Record:
+255Name : Sujit
+DOB : 17/12/2004
+Telephone : 654568
+------------------------------------------------
+258Name : Omkar
+DOB : 12/4/2003
+Telephone : 546587
+------------------------------------------------
+1.Add Record
+2.Display Record
+3.Search Record
+4.Delete Record
+5.Update Record
+6.Exit
+Enter your choice :3
+Search Record:
+Enter the ID of the person you want to search: 255
+Data Found..!
+NameDOBTelephoneName : Sujit
+DOB : 17/12/2004
+Telephone : 654568
+1.Add Record
+2.Display Record
+3.Search Record
+4.Delete Record
+5.Update Record
+6.Exit
+Enter your choice :4
+Delete Record:
+Enter the ID of the person you want to delete: 258
+Data deleted Successfully!
+1.Add Record
+2.Display Record
+3.Search Record
+4.Delete Record
+5.Update Record
+6.Exit
+Enter your choice :2
+Display Record:
+255Name : Sujit
+DOB : 17/12/2004
+Telephone : 654568
+------------------------------------------------
+1.Add Record
+2.Display Record
+3.Search Record
+4.Delete Record
+5.Update Record
+6.Exit
+Enter your choice :5
+Updata Record:
+Enter the ID of the person you want to update: 255
+Enter updated data: Enter the name: Sujit
+Enter the Date of Birth (Format: DD/MM/YYYY): 17/12/2004
+Enter the telephone number: 6456789
+------------------------------------------------
+Data updated Successfully..!
+1.Add Record
+2.Display Record
+3.Search Record
+4.Delete Record
+5.Update Record
+6.Exit
+Enter your choice :2
+Display Record:
+255Name : Sujit
+DOB : 17/12/2004
+Telephone : 6456789
+------------------------------------------------
+1.Add Record
+2.Display Record
+3.Search Record
+4.Delete Record
+5.Update Record
+6.Exit
+Enter your choice :6
+You are exited!
+--------------------------------
+Process exited after 103.7 seconds with return value 0
+Press any key to continue . . .

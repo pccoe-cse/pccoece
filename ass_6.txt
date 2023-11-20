@@ -1,0 +1,188 @@
+
+#include <iostream>
+using namespace std;
+typedef struct Matrix
+{
+int r;
+int c;
+int **arr;
+} mat;
+void create(mat *m)
+{
+m->arr = new int *[m->r];
+for (int i = 0; i < m->r; i++)
+{
+m->arr[i] = new int[m->c];
+}
+}
+mat Add(mat m1, mat m2)
+{
+mat m3;
+if (m1.r != m2.r || m1.c != m2.c)
+{
+string s = "Rows and Columns should be same for ADDITION";
+throw s;
+}
+m3.r = m1.r;
+m3.c = m1.c;
+create(&m3);
+for (int i = 0; i < m1.r; i++)
+{
+for (int j = 0; j < m1.c; j++)
+{
+m3.arr[i][j] = m1.arr[i][j] + m2.arr[i][j];
+}
+}
+return m3;
+}
+mat insert()
+{
+int r, c;
+mat m;
+cout << "Enter Rows : ";
+cin >> m.r;
+cout << "Enter Columns : ";
+cin >> m.c;
+create(&m);
+cout << "Enter the Values : " << endl;
+for (int i = 0; i < m.r; i++)
+{
+for (int j = 0; j < m.c; j++)
+cin >> m.arr[i][j];
+}
+return m;
+}
+void Display(mat m)
+{
+for (int i = 0; i < m.r; i++)
+{
+for (int j = 0; j < m.c; j++)
+cout << m.arr[i][j] << " ";
+cout << endl;
+}
+}
+mat multiplie(mat m1, mat m2)
+{
+mat m3;
+if (m1.c != m2.r)
+{
+string s = "Columns of first matrix must be same as the rows of second
+matrix\n";
+throw s;
+}
+m3.r = m1.r;
+m3.c = m2.c;
+create(&m3);
+for (int i = 0; i < m1.r; i++)
+{
+for (int j = 0; j < m2.c; j++)
+{
+m3.arr[i][j] = 0;
+for (int k = 0; k < m1.c; k++)
+{
+m3.arr[i][j] += m1.arr[i][k] * m2.arr[k][j];
+}
+}
+}
+return m3;
+}
+int main()
+{
+mat m1;
+m1 = insert();
+cout << "Displaying matrix 1" << endl;
+Display(m1);
+mat m2;
+m2 = insert();
+cout << "Displayiing matrix 2" << endl;
+Display(m2);
+int ch;
+do
+{
+cout << "!.Matrix Addition\n2.Martix Multiplication\n3.exit" << endl;
+cout << "Enter your Choise";
+cin >> ch;
+switch (ch)
+{
+case 1:
+try
+{
+mat m3 = Add(m1, m2);
+cout << "Displaying Addition of two matrix : " << endl;
+Display(m3);
+}
+catch (string s)
+{
+std::cerr << s << '\n';
+return 0;
+}
+break;
+case 2:
+try
+{
+mat m3 = multiplie(m1, m2);
+cout << "Displaying multiplication of two matrix : " << endl;
+Display(m3);
+}
+catch (string s)
+{
+std::cerr << s << '\n';
+return 0;
+}
+break;
+case 3:
+cout << "Thank you!!!" << endl;
+break;
+default:
+break;
+}
+} while (ch != 3);
+return 0;
+}
+Output
+Enter Rows : 3
+Enter Columns : 3
+Enter the Values :
+1 2 3
+4 5 6
+7 8 9
+Displaying matrix 1
+1 2 3
+4 5 6
+7 8 9
+Enter Rows :
+3
+Enter Columns : 3
+Enter the Values :
+1 1 1
+1 1 1
+1 1 1
+Displayiing matrix 2
+1 1 1
+1 1 1
+1 1 1
+!.Matrix Addition
+2.Martix Multiplication
+3.exit
+Enter your Choice1
+Displaying Addition of two matrix :
+2 3 4
+5 6 7
+8 9 10
+!.Matrix Addition
+2.Martix Multiplication
+3.exit
+Enter your Choise2
+Displaying multiplication of two matrix :
+6 6 6
+15 15 15
+24 24 24
+!.Matrix Addition
+2.Martix Multiplication
+3.exit
+Enter your Choise
+3
+Thank you!!!
+--------------------------------
+Process exited after 47.93 seconds with return value 0
+Press any key to continue . . .

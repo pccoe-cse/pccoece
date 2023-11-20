@@ -1,0 +1,47 @@
+Code
+#include<iostream>
+using namespace std;
+class checking
+{
+public:
+char hp;
+void checkchar()
+{
+cout<<"Enter the any random chracter or no or symbol"<<endl;
+cin>>hp;
+if(hp>=65&& hp<=90)
+{
+cout<<"This a your uppercase char:"<< hp<<endl;
+}
+else if(hp>=97&& hp<=122)
+{
+cout<<"This a your lowercase char:"<< hp<<endl;
+}
+else if(hp>=48&& hp<=57)
+{
+cout<<"This a your digit:"<< hp<<endl;
+}
+else
+{
+cout<<"This a your special char:"<< hp<<endl;
+}
+}
+};
+int main()
+{
+checking ch;
+ch.checkchar();
+}
+OUTPUT
+Enter the any random chracter or no or symbol
+5
+This a your digit:5
+Enter the any random chracter or no or symbol
+$
+This a your special char:$
+Enter the any random chracter or no or symbol
+S
+This a your uppercase char:S
+Enter the any random chracter or no or symbol
+j
+This a your lowercase char:j

@@ -1,0 +1,94 @@
+CODE
+#include<iostream>
+using namespace std;
+int
+main(){
+int n;
+cout<<"WELCOME TO OUR LITTLE CHAI NASTA"<<endl;
+cout<<"Enter the number of customers: "<<endl;
+cin>>n;
+int pizza[n];
+int burger[n];
+for(int i=0;i<n;i++){
+cout<<"Does the customer"<<" "<<i+1<<" "<<"like pizza?"<<endl<<"Enter 1 for yes and 0 for no";
+cin>>pizza[i];
+cout<<"Does the customer"<<" "<<i+1<<" "<<"like burger?"<<endl<<"Enter 1 for yes and 0 for
+no";
+cin>>burger[i];
+}
+int burgerc=0;
+int pizzac=0;
+int burpiz=0;
+int none=0;
+int i=0;
+while(i<n){
+if(pizza[i]==0 && burger[i]==0){
+none++;
+}else if(pizza[i]==1 && burger[i]==1){
+burpiz++;
+}else if(pizza[i]==0 && burger[i]==1){
+burgerc++;
+}else{
+pizzac++;
+}
+i++;
+}
+cout<<endl<<"Np. of people who liked iether pizza or burger or both
+are:"<<pizzac+burgerc+burpiz<<endl;
+cout<<"No. of People who like pizza: "<<pizzac<<endl;
+cout<<"No. of People who like burger: "<<burgerc<<endl;
+cout<<"No. of People who like pizza and burger both: "<<burpiz<<endl;
+cout<<"No. of People who like nor pizza nor burger: "<<none<<endl;
+}
+OUTPUT
+WELCOME TO OUR LITTLE CHAI NASTA
+Enter the number of customers:
+10
+Does the customer 1 like pizza?
+Enter 1 for yes and 0 for no1
+Does the customer 1 like burger?
+Enter 1 for yes and 0 for no1
+Does the customer 2 like pizza?
+Enter 1 for yes and 0 for no0
+Does the customer 2 like burger?
+Enter 1 for yes and 0 for no1
+Does the customer 3 like pizza?
+Enter 1 for yes and 0 for no1
+Does the customer 3 like burger?
+Enter 1 for yes and 0 for no0
+Does the customer 4 like pizza?
+Enter 1 for yes and 0 for no0
+Does the customer 4 like burger?
+Enter 1 for yes and 0 for no1
+Does the customer 5 like pizza?
+Enter 1 for yes and 0 for no0
+Does the customer 5 like burger?
+Enter 1 for yes and 0 for no0
+Does the customer 6 like pizza?
+Enter 1 for yes and 0 for no1
+Does the customer 6 like burger?
+Enter 1 for yes and 0 for no1
+Does the customer 7 like pizza?
+Enter 1 for yes and 0 for no1
+Does the customer 7 like burger?
+Enter 1 for yes and 0 for no1
+Does the customer 8 like pizza?
+Enter 1 for yes and 0 for no1
+Does the customer 8 like burger?
+Enter 1 for yes and 0 for no0
+Does the customer 9 like pizza?
+Enter 1 for yes and 0 for no1
+Does the customer 9 like burger?
+Enter 1 for yes and 0 for no1
+Does the customer 10 like pizza?
+Enter 1 for yes and 0 for no0
+Does the customer 10 like burger?
+Enter 1 for yes and 0 for no
+1
+Np. of people who liked iether pizza or burger or both are:9
+No. of People who like pizza: 2
+No. of People who like burger: 3
+No. of People who like pizza and burger both: 4
+No. of People who like nor pizza nor burger: 1
+Process exited after 60.88 seconds with return value 0
+Press any key to continue . . .

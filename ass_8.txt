@@ -1,0 +1,253 @@
+Code
+#include <iostream>
+#include <fstream>
+#include <stdio.h>
+using namespace std;
+class Employee
+{
+public:
+int Id;
+char name[20];
+float salary;
+void read();
+void display();
+void updateSalary(float s)
+{
+salary = s;
+}
+};
+void Employee::read()
+{
+cout << "Enter name: ";
+cin>>name;
+cout << "Enter employee Id: ";
+cin >> Id;
+cout << "Enter salary: ";
+cin >> salary;
+}
+void Employee::display()
+{
+cout <<"Id : "<< Id <<endl;
+cout<<"Name : "<< name << endl;
+cout<<"Salary : " << salary << endl;
+}
+fstream file;
+void deleteExistingFile()
+{
+remove("EMPLOYEE.txt");
+}
+void AddData()
+{
+Employee x;
+x.read();
+file.open("EMPLOYEE.txt", ios::binary | ios::app);
+if (!file)
+{
+cout << "ERROR IN CREATING FILE\n";
+return;
+}
+file.write((char *)&x, sizeof(x));
+file.close();
+cout << "Record added sucessfully.\n";
+}
+void displayAll()
+{
+Employee x;
+file.open("EMPLOYEE.txt", ios::binary | ios::in);
+if (!file)
+{
+cout << "ERROR IN OPENING FILE \n";
+return;
+}
+while (file)
+{
+if (file.read((char *)&x, sizeof(x)))
+x.display();
+}
+file.close();
+}
+void searchForRecord()
+{
+Employee x;
+int c;
+int isFound = 0;
+file.open("EMPLOYEE.txt", ios::binary | ios::in);
+if (!file)
+{
+cout << "ERROR IN OPENING FILE \n";
+return;
+}
+cout << "Enter employee Id: ";
+cin >> c;
+while (file)
+{
+if (file.read((char *)&x, sizeof(x)))
+{
+if (x.Id == c)
+{
+cout << "RECORD FOUND\n";
+x.display();
+isFound = 1;
+break;
+}
+}
+}
+if (isFound == 0)
+{
+cout << "Record not found!!!\n";
+}
+file.close();
+}
+void increaseSalary()
+{
+Employee x;
+int c;
+int isFound = 0;
+float sal;
+file.open("EMPLOYEE.txt", ios::binary | ios::in);
+if (!file)
+{
+cout << "ERROR IN OPENING FILE \n";
+return;
+}
+cout << "enter employee Id \n";
+cin >> c;
+while (file)
+{
+if (file.read((char *)&x, sizeof(x)))
+{
+if (x.Id == c)
+{
+cout << "Salary hike? ";
+cin >> sal;
+x.updateSalary(x.salary + sal);
+isFound = 1;
+break;
+}
+}
+}
+if (isFound == 0)
+{
+cout << "Record not found!!!\n";
+}
+file.close();
+cout << "Salary updated successfully." << endl;
+}
+int main(){
+char ch;
+deleteExistingFile();
+do
+{
+int n;
+cout << "ENTER CHOICE"<<endl;
+cout << "1.ADD AN EMPLOYEE"<<endl;
+cout << "2.DISPLAY"<<endl;
+cout << "3.SEARCH"<<endl;
+cout << "4.INCREASE SALARY"<<endl;
+cout << "5.INSERT RECORD"<<endl;
+cout << "6.exit"<<endl;
+cout << "Make a choice: ";
+cin >> n;
+switch (n)
+{
+case 1:
+AddData();
+break;
+case 2:
+displayAll();
+break;
+case 3:
+searchForRecord();
+break;
+case 4:
+increaseSalary();
+break;
+case 5:
+cout<<"Thank you!!!"<<endl;
+break;
+default:
+cout << "Invalid Choice\n";
+}
+} while (n != 5);
+return 0;
+}
+Output
+ENTER CHOICE
+1.ADD AN EMPLOYEE
+2.DISPLAY
+3.SEARCH
+4.INCREASE SALARY
+5.exit
+Make a choice: 1
+Enter name: Sujit
+Enter employee Id: 255
+Enter salary: 500000
+Record added sucessfully.
+ENTER CHOICE
+1.ADD AN EMPLOYEE
+2.DISPLAY
+3.SEARCH
+4.INCREASE SALARY
+5.exit
+Make a choice: 1
+Enter name: Omkar
+Enter employee Id: 258
+Enter salary: 605003
+Record added sucessfully.
+ENTER CHOICE
+1.ADD AN EMPLOYEE
+2.DISPLAY
+3.SEARCH
+4.INCREASE SALARY
+5.exit
+Make a choice: 2
+Id : 255
+Name : Sujit
+Salary : 500000
+Id : 258
+Name : Omkar
+Salary : 605003
+ENTER CHOICE
+1.ADD AN EMPLOYEE
+2.DISPLAY
+3.SEARCH
+4.INCREASE SALARY
+5.exit
+Make a choice: 3
+Enter employee Id: 255
+RECORD FOUND
+Id : 255
+Name : Sujit
+Salary : 500000
+ENTER CHOICE
+1.ADD AN EMPLOYEE
+2.DISPLAY
+3.SEARCH
+4.INCREASE SALARY
+5.exit
+Make a choice: 4
+enter employee Id
+255
+Salary hike? 60000
+Salary updated successfully.
+ENTER CHOICE
+1.ADD AN EMPLOYEE
+2.DISPLAY
+3.SEARCH
+4.INCREASE SALARY
+5.exit
+Make a choice: 2
+Id : 255
+Name : Sujit
+Salary : 560000
+Id : 258
+Name : Omkar
+Salary : 605003
+ENTER CHOICE
+1.ADD AN EMPLOYEE
+2.DISPLAY
+3.SEARCH
+4.INCREASE SALARY
+5.exit
+Make a choice: 5
+Thank you!!!

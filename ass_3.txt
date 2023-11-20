@@ -1,0 +1,208 @@
+CODE
+#include <iostream>
+#include <string>
+using namespace std;
+// Create a class named Vehicle with two data member named Milage and price.
+// Create its two subclasses
+class Vehicle{
+private:
+float Milage;
+float price;
+public:
+//constructor
+Vehicle(){
+cout <<"Enter the milage of the vehicle : ";
+cin>>Milage;
+cout <<"Enter the Price of the vehicle : ";
+cin>>price;
+}
+virtual void display(){
+cout<<"Milage: "<<Milage<<endl;
+cout<<"Price: "<<price<<endl;
+}
+};
+//Car with data members to store ownership cost, warranty (by years), seating
+// capacity and fuel type (diesel or petrol).
+class Car: public Vehicle{
+private:
+float cost;
+int warranty;
+int capacity;
+string fuelType;
+public:
+Car(){
+cout <<"Enter the ownership cost of the Car : ";
+cin>>cost;
+cout <<"Enter the Warranty of the Car : ";
+cin>>warranty;
+cout <<"Enter the Seating capacity of the Car : ";
+cin>>capacity;
+cout <<"Enter the Fuel type of the Car : ";
+cin>>fuelType;
+}
+void display(){
+Vehicle::display();
+cout<<"Ownership Cost: "<<cost<<endl;
+cout<<"Warranty: "<<warranty<<endl;
+cout<<"Seating capacity: "<<capacity<<endl;
+cout<<"Fuel type: "<<fuelType<<endl;
+}
+};
+//Bike with data members to store the number of cylinders, number of gears,
+// cooling type (air, liquid or oil).
+class Bike: public Vehicle{
+private:
+int cylinderno;
+int gearno;
+string cooling;
+string wheel;
+public:
+Bike(){
+cout <<"Enter the number of cylinder of the Bike : ";
+cin>>cylinderno;
+cout <<"Enter the number of gears of the Bike : ";
+cin>>gearno;
+cout <<"Enter the type of cooling of the Bike : ";
+cin>>cooling;
+cout <<"Enter the wheel type(Alloy/spokes) of the Bike : ";
+cin>>wheel;
+}
+void display(){
+Vehicle::display();
+cout<<"Number cylinders: "<<cylinderno<<endl;
+cout<<"Number gears: "<<gearno<<endl;
+cout<<"Cooling type: "<<cooling<<endl;
+cout<<"Wheel Type : "<<wheel<<endl;
+}
+};
+//two subclasses Audi and Ford of Car, each having a data member to store the
+// model type.
+class Audi: public Car{
+private:
+string modelType;
+public:
+Audi(){
+modelType="Audi";
+}
+void display(){
+cout<<"Model type: "<<modelType<<endl;
+Car :: display();
+}
+};
+class Ford:public Car{
+private:
+string modelType;
+public:
+Ford(){
+modelType="Ford";
+}
+void display(){
+cout<<"Model type: "<<modelType<<endl;
+Car::display();
+}
+};
+//Next, make two subclasses Bajaj and TVS, each having a data member to store
+// the make-type.
+class Bajaj: public Bike{
+private:
+string makeType;
+public:
+Bajaj(){
+makeType="Bajaj";
+}
+void display(){
+cout<<"The make-type: "<<makeType<<endl;
+Bike::display();
+}
+};
+class TVS : public Bike{
+private:
+string makeType;
+public:
+TVS(){
+makeType="TVS";
+}
+void display(){
+cout<<"The make-type: "<<makeType<<endl;
+Bike::display();
+}
+};
+// main function
+int main()
+{
+cout <<"Enter the details of Audi"<<endl;
+Audi carAudi;
+cout <<endl<<"Enter the details of Ford"<<endl;
+Ford carFord;
+cout <<endl<<"Enter the details of Bajaj"<<endl;
+Bajaj bikeBajaj;
+cout <<endl<<"Enter the details of TVS"<<endl;
+TVS bikeTVS;
+cout<<endl;
+carAudi.display();
+cout<<endl;
+carFord.display();
+cout<<endl;
+bikeBajaj.display();
+cout<<endl;
+bikeTVS.display();
+return 0;
+}
+OUTPUT
+/tmp/73lrh6gloD.o
+Enter the details of Audi
+Enter the milage of the vehicle : 10000
+Enter the Price of the vehicle : 360000
+Enter the ownership cost of the Car : 290000
+Enter the Warranty of the Car : 10
+Enter the Seating capacity of the Car : 4
+Enter the Fuel type of the Car : Disel
+Enter the details of Ford
+Enter the milage of the vehicle : 20000
+Enter the Price of the vehicle : 260000
+Enter the ownership cost of the Car : 200000
+Enter the Warranty of the Car : 5
+Enter the Seating capacity of the Car : 6
+Enter the Fuel type of the Car : petrol
+Enter the details of Bajaj
+Enter the milage of the vehicle : 16000
+Enter the Price of the vehicle : 56000
+Enter the number of cylinder of the Bike : 1
+Enter the number of gears of the Bike : 1
+Enter the type of cooling of the Bike : liquid
+Enter the wheel type(Alloy/spokes) of the Bike : Alloy
+Enter the details of TVS
+Enter the milage of the vehicle : 13000
+Enter the Price of the vehicle : 60000
+Enter the number of cylinder of the Bike : 2
+Enter the number of gears of the Bike : 6
+Enter the type of cooling of the Bike : liquid
+Enter the wheel type(Alloy/spokes) of the Bike : spokes
+Model type: Audi
+Milage: 10000
+Price: 360000
+Ownership Cost: 290000
+Warranty: 10
+Seating capacity: 4
+Fuel type: Disel
+Model type: Ford
+Milage: 20000
+Price: 260000
+Ownership Cost: 200000
+Warranty: 5
+Seating capacity: 6
+Fuel type: petrol
+The make-type: Bajaj
+Milage: 16000
+Price: 56000
+Number cylinders: 1
+Number gears: 1
+Cooling type: liquid
+Wheel Type : Alloy
+The make-type: TVS
+Milage: 13000
+Price: 60000
+Number cylinders: 2
+Number gears: 6
+Cooling type: liquid
+Wheel Type : spokes

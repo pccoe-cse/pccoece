@@ -1,0 +1,48 @@
+Code
+#include<iostream>
+using namespace std;
+int main()
+{
+int i,n;
+cout<<"Enter the size of an array:"<<endl;
+cin>>n;
+int arr[n];
+cout<<"Enter the no in an array:";
+for(int a=0;a<n;a++)
+{
+cin>>arr[a];
+}
+for(int i=0;i<n;i++)
+{
+int count =0;
+for(int j=0;j<n;j++)
+{
+if(arr[i]==arr[j])
+{
+count++;
+}
+}
+if(count>1 || count==1)
+{
+cout<<arr[i]<<" is the that occurs "<<count<<" times"<<endl;
+}
+}
+return 0;
+}
+OUTPUT
+Enter the size of an array:
+10
+Enter the no in an array:
+2 4 5 5 2 3 6 7 9 4
+2 is the that occurs 2
+times 4 is the that occurs
+2 times 5 is the that
+occurs 2 times 5 is the
+that occurs 2 times
+2 is the that occurs 2
+times 3 is the that occurs
+1 times 6 is the that
+occurs 1 times 7 is the
+that occurs 1 times 9 is
+the that occurs 1 times 4
+is the that occurs 2 times

@@ -1,0 +1,67 @@
+CODE
+#include<iostream>
+using namespace std;
+class complex{//class is named as complex…
+int real,imag;
+public:
+complex(int a=0,int b=0){
+}
+complex operator +(complex &obj); //operator(+) overloading function declaration…
+complex operator *(complex &obj); //operator(*) overloading function declaration…
+void display(){
+cout<<real<<" + "<<imag<<" i"<<endl;
+}
+friend istream &operator >>(istream &input,complex &t)
+{
+cout<<"Enter the real part";
+input>>t.real;
+cout<<"Enter the imaginary part";
+input>>t.imag;
+}
+friend ostream &operator <<(ostream &output,complex &t)
+{
+output<<t.real<<"+"<<t.imag<<"i\n";
+}
+};
+complex complex::operator+(complex &obj){
+complex res;
+res.real = this->real + obj.real;
+res.imag = this->imag + obj.imag;
+return res;
+}
+complex complex::operator*(complex &obj){
+complex res;
+res.real = (this->real*obj.real)-(this->imag*obj.imag);
+res.imag =(real * obj.imag)+(imag*obj.real);
+return res;
+}
+int main(){
+complex c1,c2,c3,c4;
+cout<<"\nEnter the 1st number\n";
+cin>>c1;
+cout<<"\nEnter the 2nd number\n";
+cin>>c2;
+c3=c1+c2;
+c4=c1*c2;
+cout<<"\nThe first number is ";
+cout<<c1;
+cout<<"\nThe second number is ";
+cout<<c2;
+cout<<"\nThe addition is ";
+cout<<c3;
+cout<<"\nThe multiplication is ";
+cout<<c4;
+return 0;
+}
+OUTPUT
+/tmp/byyz5gWDQz.o
+Enter the 1st number
+Enter the real part20
+Enter the imaginary part30
+Enter the 2nd number
+Enter the real part20
+Enter the imaginary part30
+The first number is 20+30i
+The second number is 20+30i
+The addition is 40+60i
+The multiplication is -500+1200i

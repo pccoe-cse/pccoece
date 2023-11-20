@@ -1,0 +1,121 @@
+#include <iostream>
+#include <string>
+using namespace std;
+class student // class is named as student...
+{
+// member variables..
+private: // private access specifier so that member variables can't be used outside the class...
+string name;
+string roll_no;
+char division;
+string ddmmyyyy;
+string blood_group;
+string mobile_no;
+string address;
+// static member variable...
+// member functions
+public: // public access specifier so that member functions can be used anywhere in
+program...
+student(); // constructor declaration
+~student(); // destructor declaration
+static int count;
+inline void show();
+static void increament ();
+};
+void student :: increament(){
+count++;
+}
+student ::student()
+{
+// taking details input from user...
+cout << endl
+<< "Enter students details here: ";
+cout << endl
+<< "Enter student name: ";
+cin >> name;
+cout << endl
+<< "Enter student roll no: ";
+cin >> roll_no;
+cout << endl
+<< "Enter student's division: ";
+cin >> division;
+cout << endl
+<< "Enter student's DOB in dd/mm/yyyy format: ";
+cin >> ddmmyyyy;
+cout << endl
+<< "Enter student's blood group: ";
+cin >> blood_group;
+cout << endl
+<< "Enter student's mobile no: ";
+cin >> mobile_no;
+cin.ignore();
+cout << endl
+<< "Enter student's contact address: ";
+getline(cin, address); // getline function is inbuilt function has capacity to get multiple lines
+input...
+// Using static increament function to increament static variable count
+student :: increament();
+}
+student::~student()
+{
+cout << endl
+<< "Name: " << name;
+cout << endl
+<< "Roll no: " << roll_no;
+cout << endl
+<< "Division: " << division;
+cout << endl
+<< "DOB: " << ddmmyyyy;
+cout << endl
+<< "Blood group: " << blood_group;
+cout << endl
+<< "Mobile no.: " << mobile_no;
+cout << endl
+<< "Contact address: " << address;
+}
+int student::count = 0; // initialising static member variable to 0...
+void student::show()
+{
+delete this;
+}
+int main()
+{
+// int n;
+// cout<<endl<<"enter no. of students: ";
+// cin>>n;
+student *s[100];
+int ch;
+do
+{
+cout<<"Enter 1 to add student \n 2 for getiing details of filled students \n 3 to exit : ";
+cout << "Enter the choice : ";
+cin >> ch;
+switch (ch)
+{
+case 1:
+{
+int i = student :: count;
+s[i] = new student();
+break;
+}
+case 2:
+{
+cout << endl
+<< "no. of students who filled information are: " << s[0]->count;
+for (int i = 0; i < student :: count; i++)
+{
+cout << endl
+<< "details of " << i + 1 << "student: ";
+s[i]->show();
+}
+break;
+}
+case 3:
+{
+cout<<" Thank you ....Exiting......";
+break;
+}
+}
+} while (ch != 3);
+return 0;
+}
